@@ -1,0 +1,119 @@
+
+<html>
+
+<head>
+  <title> Noise </title>
+  <script src="./p5/p5.min.js"> </script>
+  <script src="./p5/addons/p5.dom.min.js"> </script>
+
+  <script>
+    var weight = 10;
+    var arr = [];
+    for (var x = 0; x < 600/weight; x++) {
+      arr[x] = [];
+      for (var y = 0; y < 400/weight; y++) {
+        arr[x][y] = 0;
+      }
+    }
+    var currentX = 0;
+    var currentY = 0;
+
+    function setup() {
+      createCanvas(600, 400);
+      background(200);
+      stroke(0);
+      strokeWeight(weight);
+      button = createButton('reset');
+      button.mousePressed(function () {
+        background(200);
+      });
+
+      currentX = arr.length /2;
+      currentY = arr[0].length /2;
+      arr[currentX][currentY] = 1;
+    }
+
+    function draw() {
+      rect(currentY*weight, currentX*weight, weight, weight);
+      update();
+    }
+
+    function update() {
+      switch (Math.floor(random(8))) {
+        case 0:
+          //North
+          if (arr[currentX][currentY+1] == 0) {
+            arr[currentX[currentY+1]] = 1;
+            currentY++;
+          }
+          break;
+        case 1:
+          //South
+          if (arr[currentX][currentY-1] == 0) {
+            arr[currentX][currentY-1] = 1;
+            currentY--;
+          }
+          break;
+        case 2:
+          //West
+          if (arr[currentX-1][currentY] == 0) {
+            arr[currentX-1][currentY] = 1;
+            currentX--;
+          }
+          break;
+        case 3:
+          //East
+          if (arr[currentX+1][currentY] == 0) {
+            arr[currentX+1][currentY] = 1;
+            currentX++;
+          }
+          break;
+        case 4:
+          if (arr[currentX+1][currentY+1] == 0) {
+            arr[currentX+1][currentY+1] = 1;
+            currentY++;
+            currentX++;
+          }
+          break;
+        case 5:
+          if (arr[currentX-1][currentY+1] == 0) {
+            arr[currentX-1][currentY+1] = 1;
+            currentY++;
+            currentX--;
+          }
+          break;
+        case 6:
+          if (arr[currentX+1][currentY-1] == 0) {
+            arr[currentX+1][currentY-1] = 1;
+            currentY--;
+            currentX++;
+          }
+          break;
+        case 7:
+          if (arr[currentX-1][currentY-1] == 0) {
+            arr[currentX-1][currentY-1] = 1;
+            currentY--;
+            currentX--;
+          }
+          break;
+      }
+    }
+  </script>
+
+  <style>
+    button {
+      background-color: green;
+      border: none;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+      margin: 5px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+</body>
+
+</html>

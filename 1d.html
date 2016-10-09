@@ -1,0 +1,70 @@
+
+<html>
+
+<head>
+  <title> Noise </title>
+  <script src="./p5/p5.min.js"> </script>
+  <script src="./p5/addons/p5.dom.min.js"> </script>
+
+  <script>
+    var x = 0;
+    var functionID = 0;
+
+    function setup() {
+      createCanvas(600, 400);
+      background(200);
+      stroke(0);
+      strokeWeight(2);
+
+      createButton('sin').mousePressed(function() {
+        functionID = 1;
+      });
+
+      createButton('random').mousePressed(function() {
+        functionID = 2;
+      });
+
+      createButton('perlin').mousePressed(function() {
+        functionID = 3;
+      });
+
+      button = createButton('reset');
+      button.mousePressed(function () {
+        background(200);
+        x = 0;
+        functionID = 0;
+      });
+    }
+
+    function draw() {
+      translate(0, height/2);
+      if (functionID == 1) {
+        line(x, sin(x/50)*100, x+1, sin((x+1)/50)*100);
+        x++;
+      } else if (functionID == 2) {
+        line(x, random(-200, 200), x+1, random(-200, 200));
+        x++;
+      } else if (functionID == 3) {
+        line(x, noise(x/30)*100, x+1, noise((x+1)/30)*100);
+        x++;
+      }
+    }
+  </script>
+
+  <style>
+    button {
+      background-color: green;
+      border: none;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+      margin: 5px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+</body>
+
+</html>

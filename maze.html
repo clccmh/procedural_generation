@@ -1,0 +1,60 @@
+
+<html>
+
+<head>
+  <title> Noise </title>
+  <script src="./p5/p5.min.js"> </script>
+  <script src="./p5/addons/p5.dom.min.js"> </script>
+
+  <script>
+    var cell_stack = [];
+    var unvisited = [];
+    for (var x = 0; x < 600; x++) {
+      for (var y = 0; y < 400; y++) {
+        unvisited.push([x, y]);
+      }
+    }
+    var current = unvisited[0];
+    array.splice(unvisited.indexOf(current), 1);
+
+    function setup() {
+      createCanvas(600, 400);
+      background(200);
+      stroke(0);
+      strokeWeight(2);
+
+      button = createButton('reset');
+      button.mousePressed(function () {
+        background(200);
+        x = 0;
+        functionID = 0;
+      });
+    }
+
+    function draw() {
+      for (un in unvisited) {
+        rect(un[0], un[1], 1, 1);
+      }
+      if (unvisited.length > 0) {
+
+      }
+    }
+  </script>
+
+  <style>
+    button {
+      background-color: green;
+      border: none;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+      margin: 5px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+</body>
+
+</html>
