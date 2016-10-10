@@ -1,0 +1,86 @@
+
+<html>
+
+<head>
+  <title> 2D Noise </title>
+  <script src="./p5/p5.min.js"> </script>
+  <script src="./p5/addons/p5.dom.min.js"> </script>
+
+  <script>
+    var x = 0;
+    var y = 0;
+    var functionID = 0;
+
+    function setup() {
+      createCanvas(400, 400);
+      //background(200);
+      //stroke(0);
+      //strokeWeight(2);
+      pixelDensity(1);
+
+      slider = createSlider(.0001, .1, .001, 0);
+
+      createButton('sin').mousePressed(function() {
+        functionID = 1;
+      });
+
+      createButton('perlin').mousePressed(function() {
+        functionID = 3;
+      });
+
+      button = createButton('reset');
+      button.mousePressed(function () {
+        background(200);
+        x = 0;
+        functionID = 0;
+      });
+    }
+
+    function draw() {
+      if (functionID == 1) {
+        loadPixels();
+        for (var y = 0; y < height; y++) {
+          for (var x = 0; x < width; x++) {
+              var index = (x + y * width) * 4;
+              var val = sin(x*y * slider.value()) * 255;
+              pixels[index] = val;
+              pixels[index+1] = val;
+              pixels[index+2] = val;
+              pixels[index+3] = 255;
+          }
+        }
+        updatePixels();
+      } else if (functionID == 3) {
+        loadPixels();
+        for (var y = 0; y < height; y++) {
+          for (var x = 0; x < width; x++) {
+              var index = (x + y * width) * 4;
+              var val = noise(x*slider.value(), y*slider.value()) * 255;
+              pixels[index] = val;
+              pixels[index+1] = val;
+              pixels[index+2] = val;
+              pixels[index+3] = 255;
+          }
+        }
+        updatePixels();
+      }
+    }
+  </script>
+
+  <style>
+    button {
+      background-color: green;
+      border: none;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+      margin: 5px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+</body>
+
+</html>

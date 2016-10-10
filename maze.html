@@ -7,15 +7,15 @@
   <script src="./p5/addons/p5.dom.min.js"> </script>
 
   <script>
-    var cell_stack = [];
-    var unvisited = [];
-    for (var x = 0; x < 600; x++) {
-      for (var y = 0; y < 400; y++) {
-        unvisited.push([x, y]);
+    var weight = 5;
+    var cells = [];
+    for (var x = 0; x < 600/weight; x++) {
+      cells[x] = [];
+      for (var y = 0; y < 400/weight; y++) {
+        cells[x][y] = 0;
       }
     }
-    var current = unvisited[0];
-    array.splice(unvisited.indexOf(current), 1);
+    var currentX = 0;
 
     function setup() {
       createCanvas(600, 400);
